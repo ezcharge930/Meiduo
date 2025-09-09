@@ -9,6 +9,9 @@ class BookInfo(models.Model):
     commentcount = models.IntegerField(default= 0)
     is_delete = models.BooleanField(default= False)
     
+    def __str__(self):
+        return self.name
+    
     class Meta:
         db_table = 'bookinfo'
         verbose_name = '书籍管理'
@@ -25,4 +28,10 @@ class PeopleInfo(models.Model):
     description = models.CharField(max_length= 100, null= True)
     is_delete = models.BooleanField(default= False)
 
-    book = models.ForeignKey(BookInfo)
+    book = models.ForeignKey(BookInfo, on_delete= models.CASCADE)
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'peopleinfo'
